@@ -1,3 +1,9 @@
+/**
+ * Title:          Week 2 - ArrayLists (Animal Catalog)
+ * Author:         Elijah Cornell
+ * Creation Date:  2016-01-25
+ * Class:          PRG/421 - Roland Morales
+ */
 package ecornell.wk2.arraylist;
 
 /**
@@ -9,7 +15,6 @@ public class CharacteristicBoolean extends Characteristic {
 
     public CharacteristicBoolean(String name, String trueVerb, String negativeVerb) {
         super(name);
-
         this.verb = trueVerb;
         this.negativeVerb = negativeVerb;
     }

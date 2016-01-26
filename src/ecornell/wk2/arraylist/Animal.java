@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Animal {
 
-    // ID
     private String name;
 
     private List<Characteristic> characteristicList;

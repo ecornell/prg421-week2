@@ -1,3 +1,9 @@
+/**
+ * Title:          Week 2 - ArrayLists (Animal Catalog)
+ * Author:         Elijah Cornell
+ * Creation Date:  2016-01-25
+ * Class:          PRG/421 - Roland Morales
+ */
 package ecornell.wk2.arraylist;
 
 /**
@@ -7,13 +13,10 @@ public class CharacteristicString extends Characteristic {
 
     public CharacteristicString(String name, String verb) {
         super(name);
-
         this.name = name;
         this.verb = verb;
     }
 
-
-    @Override
     public String getValue() {
         return (String) value;
     }
@@ -21,5 +24,6 @@ public class CharacteristicString extends Characteristic {
     public void setValue(String value) {
         this.value = value;
     }
+
 
 }

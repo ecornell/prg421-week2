@@ -1,3 +1,9 @@
+/**
+ * Title:          Week 2 - ArrayLists (Animal Catalog)
+ * Author:         Elijah Cornell
+ * Creation Date:  2016-01-25
+ * Class:          PRG/421 - Roland Morales
+ */
 package ecornell.wk2.arraylist;
 
 abstract public class Characteristic {
@@ -11,9 +17,6 @@ abstract public class Characteristic {
         this.name = name;
     }
 
-    public void setName(String name) {
-        this.name =  name;
-    }
     public String getName() {
         return name;
     }
