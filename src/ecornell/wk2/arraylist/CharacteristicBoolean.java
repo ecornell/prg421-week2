@@ -3,7 +3,7 @@ package ecornell.wk2.arraylist;
 /**
  * Created by eli on 1/25/16.
  */
-public class CharacteristicBoolean extends Characteristic{
+public class CharacteristicBoolean extends Characteristic {
 
     private String negativeVerb;
 
@@ -13,7 +13,7 @@ public class CharacteristicBoolean extends Characteristic{
         this.verb = trueVerb;
         this.negativeVerb = negativeVerb;
     }
-    
+
     @Override
     public Boolean getValue() {
         return (Boolean) value;

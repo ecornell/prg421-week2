@@ -22,7 +22,7 @@ public class Animal {
 
         characteristicList = new ArrayList<Characteristic>();
 
-        characteristicList.add(new CharacteristicString("Color","is"));
+        characteristicList.add(new CharacteristicString("Color", "is"));
         characteristicList.add(new CharacteristicBoolean("Fly", "Can", "Cannot"));
         characteristicList.add(new CharacteristicBoolean("Swim", "Can", "Cannot"));
         characteristicList.add(new CharacteristicBoolean("Vertebrate", "Is a", "Is not a"));

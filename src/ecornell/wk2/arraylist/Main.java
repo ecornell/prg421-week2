@@ -8,24 +8,24 @@ import java.util.List;
  * Author:         Elijah Cornell
  * Creation Date:  2016-01-25
  * Class:          PRG/421 - Roland Morales
- *
+ * <p/>
  * Program Requirements:
- *
+ * <p/>
  * Key parts:
  * - Add, edit, delete different types of animals
  * - Select an animal, and the corresponding characteristics will be displayed
  * (such as color, vertebrate or invertebrate, can swim, etc.)
  * -The program must use ArrayList(s) to work with these animal objects.
- *
+ * <p/>
  * Must demonstrate the use of an ArrayList
- *
+ * <p/>
  * Program Flow:
  *   Display a main menu
  *     -> Add animal
  *     -> Edit animal
  *     -> Delete animal
  *     -> List animals
- *
+ * <p/>
  * Input: Console
  * Output: Console
  */
@@ -62,7 +62,6 @@ public class Main {
             ui.display("X: Exit");
             ui.displayPrompt("Menu selection (A/E/D/L/X) : ");
 
-
             menuSelection = ui.readInputString();
 
             if (menuSelection.equalsIgnoreCase("A")) {
@@ -76,8 +75,6 @@ public class Main {
                 ui.displayTitle("Edit an Animal");
 
                 editAnimal();
-
-
 
             } else if (menuSelection.equalsIgnoreCase("D")) {
 
@@ -108,18 +105,11 @@ public class Main {
 
             if (c instanceof CharacteristicBoolean) {
 
-                ui.displayPrompt(c.getVerb() + " " + c.getName() + "? (y/n) : ");
-
-                String newValueString = ui.readInputString();
-                if (newValueString.trim().length() > 0) {
-                    ((CharacteristicBoolean) c).setValue(newValueString.equalsIgnoreCase("y"));
-                }
+                promptCharBool(c, c.getVerb() + " " + c.getName() + "? (y/n) : ");
 
             } else if (c instanceof CharacteristicString) {
 
-                ui.displayPrompt( c.getName() + " " + c.getVerb() +"? : ");
-
-                ((CharacteristicString) c).setValue(ui.readInputString());
+                promptCharString(c, c.getName() + " " + c.getVerb() + "? : ");
 
             }
 
@@ -128,68 +118,24 @@ public class Main {
         animalList.add(animal);
     }
 
-    private void listAnimals() {
-        for (Animal animal : animalList) {
-
-            ui.display(animal.getName());
-
-            for (Characteristic c : animal.getCharacteristicList()) {
-
-                ui.display(" - " + c.toString());
-
-            }
-
-            ui.spacer();
-
-        }
-    }
-
     private void deleteAnimal() {
-        for (int i = 0; i < animalList.size(); i++) {
-            Animal animal = animalList.get(i);
-            ui.display((i+1) + " : " + animal.getName());
-        }
+        displayNumberedList();
 
         ui.spacer();
 
-        int inputNumber = 0;
-        do {
-            ui.displayPrompt("Enter # to delete: ");
-
-            try {
-                inputNumber = ui.readInputInt();
-            } catch (NumberFormatException nfe) {
-                ui.displayError("Invalid number entered");
-            }
-
-        } while (inputNumber == 0);
-
-        int n = ui.readInputInt();
+        int inputNumber = promptNumber("Enter # to delete: ");
 
         ui.spacer();
 
-        animalList.remove(n);
+        animalList.remove(inputNumber);
     }
 
     private void editAnimal() {
-        for (int i = 0; i < animalList.size(); i++) {
-            Animal animal = animalList.get(i);
-            ui.display((i+1) + " : " + animal.getName());
-        }
+        displayNumberedList();
 
         ui.spacer();
 
-        int inputNumber = 0;
-        do {
-            ui.displayPrompt("Enter # to edit: ");
-
-            try {
-                inputNumber = ui.readInputInt();
-            } catch (NumberFormatException nfe) {
-                ui.displayError("Invalid number entered");
-            }
-
-        } while (inputNumber == 0);
+        int inputNumber = promptNumber("Enter # to edit: ");
 
         ui.spacer();
 
@@ -209,25 +155,89 @@ public class Main {
 
             if (c instanceof CharacteristicBoolean) {
 
-                ui.displayPrompt(c.getVerb()
+                promptCharBool(c, c.getVerb()
                         + " " + c.getName() + "? (y/n) ["
                         + (((CharacteristicBoolean) c).getValue() ? "y" : "n") + "]: ");
 
-                String newValueString = ui.readInputString();
-                if (newValueString.trim().length() > 0) {
-                    ((CharacteristicBoolean) c).setValue(newValueString.equalsIgnoreCase("y"));
-                }
-
             } else if (c instanceof CharacteristicString) {
 
-                ui.displayPrompt( c.getName() + " " + c.getVerb() +"? [" + c.getValue() + "] : ");
-
-                String newValueString = ui.readInputString();
-                if (newValueString.trim().length() > 0) {
-                    ((CharacteristicString) c).setValue(newValueString);
-                }
+                promptCharString(c, c.getName() + " " + c.getVerb() + "? [" + c.getValue() + "] : ");
 
             }
+
+        }
+    }
+
+    private void displayNumberedList() {
+        for (int i = 0; i < animalList.size(); i++) {
+            Animal animal = animalList.get(i);
+            ui.display((i + 1) + " : " + animal.getName());
+        }
+    }
+
+    private int promptNumber(String text) {
+        int inputNumber = 0;
+        do {
+            ui.displayPrompt(text);
+
+            try {
+                inputNumber = ui.readInputInt();
+            } catch (NumberFormatException nfe) {
+                ui.displayError("Invalid number entered");
+            }
+
+        } while (inputNumber == 0);
+        return inputNumber;
+    }
+
+    private void promptCharString(Characteristic c, String prompt) {
+        ui.displayPrompt(prompt);
+
+        String newValueString = ui.readInputString();
+        if (newValueString.trim().length() > 0) {
+            ((CharacteristicString) c).setValue(newValueString);
+        }
+    }
+
+    private void promptCharBool(Characteristic c, String prompt) {
+        boolean valid = false;
+        do {
+            ui.displayPrompt(prompt);
+
+            String newValueString = ui.readInputString();
+            if (newValueString.trim().length() > 0) {
+                if (newValueString.equalsIgnoreCase("y") || newValueString.equalsIgnoreCase("n")) {
+                    ((CharacteristicBoolean) c).setValue(newValueString.equalsIgnoreCase("y"));
+                    valid = true;
+                } else {
+                    ui.displayError("Invalid input - Must enter y or n");
+                    valid = false;
+                }
+            }
+        } while (!valid);
+    }
+
+    private void listAnimals() {
+
+        if (animalList.size() > 0) {
+
+            for (Animal animal : animalList) {
+
+                ui.display(animal.getName());
+
+                for (Characteristic c : animal.getCharacteristicList()) {
+
+                    ui.display(" - " + c.toString());
+
+                }
+
+                ui.spacer();
+
+            }
+
+        } else {
+
+            ui.display("Catalog is empty");
 
         }
     }
@@ -235,6 +245,7 @@ public class Main {
 
     /**
      * Main program entry point
+     *
      * @param args None
      */
     public static void main(String[] args) {
