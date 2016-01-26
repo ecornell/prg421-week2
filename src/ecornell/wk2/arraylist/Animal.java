@@ -6,19 +6,38 @@
  */
 package ecornell.wk2.arraylist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal {
 
     // ID
     private String name;
 
-    // Characteristics
-    private String color;
-    private boolean vertebrate;
-    private boolean canSwim;
+    private List<Characteristic> characteristicList;
 
     public Animal() {
+
+        // Set default characteristics
+
+        characteristicList = new ArrayList<Characteristic>();
+
+        characteristicList.add(new CharacteristicString("Color","is"));
+        characteristicList.add(new CharacteristicBoolean("Fly", "Can", "Cannot"));
+        characteristicList.add(new CharacteristicBoolean("Swim", "Can", "Cannot"));
+        characteristicList.add(new CharacteristicBoolean("Vertebrate", "Is a", "Is not a"));
+
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public List<Characteristic> getCharacteristicList() {
+        return characteristicList;
+    }
 }

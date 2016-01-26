@@ -116,10 +116,20 @@ public class UI {
     }
 
     /**
+     * Prompt the user for an boolean value
+     *
+     * @return Entered boolean value
+     */
+    public boolean readInputBoolean() {
+        return Boolean.parseBoolean(readInputString());
+    }
+
+    /**
      * Display a blank line to the console
      */
     public void spacer() {
         System.out.print(System.lineSeparator());
     }
+
 
 }

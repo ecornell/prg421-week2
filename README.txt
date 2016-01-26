@@ -11,7 +11,7 @@ Program Requirements:
       (such as color, vertebrate or invertebrate, can swim, etc.)
   -The program must use ArrayList(s) to work with these animal objects.
 
- Mustdemonstrate the use of an ArrayList
+ Must demonstrate the use of an ArrayList
 
  Program Flow:
     Display a main menu
