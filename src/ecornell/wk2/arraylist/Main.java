@@ -20,11 +20,11 @@ import java.util.List;
  * Must demonstrate the use of an ArrayList
  * <p/>
  * Program Flow:
- *   Display a main menu
- *     -> Add animal
- *     -> Edit animal
- *     -> Delete animal
- *     -> List animals
+ * Display a main menu
+ * -> Add animal
+ * -> Edit animal
+ * -> Delete animal
+ * -> List animals
  * <p/>
  * Input: Console
  * Output: Console
@@ -60,6 +60,7 @@ public class Main {
             ui.display("D: Delete an animal");
             ui.display("L: List entire catalog");
             ui.display("X: Exit");
+            ui.spacer();
             ui.displayPrompt("Menu selection (A/E/D/L/X) : ");
 
             menuSelection = ui.readInputString();
@@ -105,7 +106,7 @@ public class Main {
 
             if (c instanceof CharacteristicBoolean) {
 
-                promptCharBool(c, c.getVerb() + " " + c.getName() + "? (y/n) : ");
+                promptCharBool(c, c.getVerb() + " " + c.getName() + "? (y/n) : ", false);
 
             } else if (c instanceof CharacteristicString) {
 
@@ -155,13 +156,21 @@ public class Main {
 
             if (c instanceof CharacteristicBoolean) {
 
-                promptCharBool(c, c.getVerb()
-                        + " " + c.getName() + "? (y/n) ["
-                        + (((CharacteristicBoolean) c).getValue() ? "y" : "n") + "]: ");
+                String prompt = String.format("%s %s? (y/n) [%s] : ",
+                        c.getVerb(),
+                        c.getName(),
+                        (((CharacteristicBoolean) c).getValue() ? "y" : "n"));
+
+                promptCharBool(c, prompt, true);
 
             } else if (c instanceof CharacteristicString) {
 
-                promptCharString(c, c.getName() + " " + c.getVerb() + "? [" + c.getValue() + "] : ");
+                String prompt = String.format("%s %s? [%s] : ",
+                        c.getVerb(),
+                        c.getName(),
+                        c.getValue());
+
+                promptCharString(c, prompt);
 
             }
 
@@ -199,7 +208,7 @@ public class Main {
         }
     }
 
-    private void promptCharBool(Characteristic c, String prompt) {
+    private void promptCharBool(Characteristic c, String prompt, boolean allowEmpty) {
         boolean valid = false;
         do {
             ui.displayPrompt(prompt);
@@ -212,6 +221,10 @@ public class Main {
                 } else {
                     ui.displayError("Invalid input - Must enter y or n");
                     valid = false;
+                }
+            } else {
+                if (allowEmpty) {
+                    valid = true;
                 }
             }
         } while (!valid);
