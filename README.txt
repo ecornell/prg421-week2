@@ -5,17 +5,22 @@ Class:          PRG/421 - Roland Morales
 
 Program Requirements:
 
- Key parts:
-  - Add, edit, delete different types of animals
-  - Select an animal, and the corresponding characteristics will be displayed 
-      (such as color, vertebrate or invertebrate, can swim, etc.)
-  -The program must use ArrayList(s) to work with these animal objects.
+Key parts:
+- Add, edit, delete different types of animals
+- Select an animal, and the corresponding characteristics will be displayed
+(such as color, vertebrate or invertebrate, can swim, etc.)
+-The program must use ArrayList(s) to work with these animal objects.
 
- Must demonstrate the use of an ArrayList
+Must demonstrate the use of an ArrayList
 
- Program Flow:
-    Display a main menu
-         ->
+ - ArrayLists are used to track the known Animals and their individual characteristic values
+
+Program Flow:
+-> Display a main menu
+--> Add animal
+--> Edit animal
+--> Delete animal
+--> List animals
 
 Input: Console
 Output: Console

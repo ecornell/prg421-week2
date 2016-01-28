@@ -9,12 +9,24 @@ package ecornell.wk2.arraylist;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Animal object which contains a list of characteristic values
+ */
 public class Animal {
 
+    /**
+     * Animal name
+     */
     private String name;
 
+    /**
+     * Listing the animal's characteristic values
+     */
     private List<Characteristic> characteristicList;
 
+    /**
+     * Default constructor - Sets list known characteristic types
+     */
     public Animal() {
 
         // Set default characteristics
@@ -28,14 +40,23 @@ public class Animal {
 
     }
 
+    /**
+     * @return Animal name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @param name Animal name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * @return Listing of the animal's characteristic values
+     */
     public List<Characteristic> getCharacteristicList() {
         return characteristicList;
     }

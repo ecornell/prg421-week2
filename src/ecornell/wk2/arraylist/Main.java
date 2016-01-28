@@ -14,6 +14,8 @@
  *
  * Must demonstrate the use of an ArrayList
  *
+ *  - ArrayLists are used to track the known Animals and their individual characteristic values
+ *
  * Program Flow:
  * -> Display a main menu
  * --> Add animal
@@ -33,6 +35,9 @@ public class Main {
 
     private final UI ui = UI.getInstance();
 
+    /**
+     * List of all known Animals objects
+     */
     private List<Animal> animalList;
 
     public Main() {
@@ -95,6 +100,9 @@ public class Main {
 
     }
 
+    /**
+     * Add new animal action
+     */
     private void addAnimal() {
         Animal animal = new Animal();
 
@@ -119,6 +127,9 @@ public class Main {
         animalList.add(animal);
     }
 
+    /**
+     * Delete a selected animal action
+     */
     private void deleteAnimal() {
         displayNumberedList();
 
@@ -131,6 +142,9 @@ public class Main {
         animalList.remove(inputNumber);
     }
 
+    /**
+     * Edit a selected animal action
+     */
     private void editAnimal() {
         displayNumberedList();
 
@@ -176,6 +190,9 @@ public class Main {
         }
     }
 
+    /**
+     * Display a number list of all know animal types
+     */
     private void displayNumberedList() {
         for (int i = 0; i < animalList.size(); i++) {
             Animal animal = animalList.get(i);
@@ -183,6 +200,11 @@ public class Main {
         }
     }
 
+    /**
+     * Prompt for and capture a number value
+     * @param text Prompt text
+     * @return Entered number
+     */
     private int promptNumber(String text) {
         int inputNumber = 0;
         do {
@@ -198,6 +220,11 @@ public class Main {
         return inputNumber;
     }
 
+    /**
+     * Prompt for and capture a String characteristic value
+     * @param c Characteristic object
+     * @param prompt Prompt text
+     */
     private void promptCharString(Characteristic c, String prompt) {
         ui.displayPrompt(prompt);
 
@@ -207,6 +234,11 @@ public class Main {
         }
     }
 
+    /**
+     * @param c Characteristic object
+     * @param prompt Prompt text
+     * @param allowEmpty Indicate if an error is returned on an empty value
+     */
     private void promptCharBool(Characteristic c, String prompt, boolean allowEmpty) {
         boolean valid = false;
         do {
@@ -229,6 +261,9 @@ public class Main {
         } while (!valid);
     }
 
+    /**
+     * Display a full listing on all known Animals and their individual characteristics
+     */
     private void listAnimals() {
 
         if (animalList.size() > 0) {
