@@ -131,6 +131,12 @@ public class Main {
      * Delete a selected animal action
      */
     private void deleteAnimal() {
+
+        if (animalList.isEmpty()) {
+            ui.display("Catalog is empty");
+            return;
+        }
+
         displayNumberedList();
 
         ui.spacer();
@@ -146,6 +152,12 @@ public class Main {
      * Edit a selected animal action
      */
     private void editAnimal() {
+
+        if (animalList.isEmpty()) {
+            ui.display("Catalog is empty");
+            return;
+        }
+
         displayNumberedList();
 
         ui.spacer();
