@@ -6,10 +6,12 @@
  * Class:          PRG/421 - Roland Morales
  */
 
+import java.io.Serializable;
+
 /**
  * Characteristic object that has a String value (Yes/No or True/False)
  */
-public class CharacteristicString extends Characteristic {
+public class CharacteristicString extends Characteristic implements Serializable {
 
     /**
      * @param name Characteristic name

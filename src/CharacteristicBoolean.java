@@ -6,10 +6,12 @@
  * Class:          PRG/421 - Roland Morales
  */
 
+import java.io.Serializable;
+
 /**
  * Characteristic object that has a Boolean value (Yes/No or True/False)
  */
-public class CharacteristicBoolean extends Characteristic {
+public class CharacteristicBoolean extends Characteristic implements Serializable {
 
     /**
      * Negatived verb value used to describe characteristic (examples: Is not a, Cannot)

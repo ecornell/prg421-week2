@@ -6,13 +6,14 @@
  * Class:          PRG/421 - Roland Morales
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Animal object which contains a list of characteristic values
  */
-public class Animal {
+public class Animal implements Serializable {
 
     /**
      * Animal name

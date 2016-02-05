@@ -6,6 +6,10 @@
  * Class:          PRG/421 - Roland Morales
  */
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +36,12 @@ public class Main {
         ui.display("|       PRG-421 - Wk3 - Team B         |");
         ui.display("========================================");
 
+        //
+
+        loadCatalog();
+
+        //
+
         String menuSelection;
 
         do {
@@ -54,6 +64,8 @@ public class Main {
 
                 addAnimal();
 
+                saveCatalog();
+
             } else if (menuSelection.equalsIgnoreCase("E")) {
 
                 ui.displayTitle("Edit an Animal");
@@ -66,6 +78,8 @@ public class Main {
 
                 deleteAnimal();
 
+                saveCatalog();
+
             } else if (menuSelection.equalsIgnoreCase("L")) {
 
                 ui.displayTitle("List of Entire Animal Catalog");
@@ -77,6 +91,48 @@ public class Main {
         } while (!menuSelection.equalsIgnoreCase("X"));
 
     }
+
+
+
+    private void loadCatalog() {
+
+        Path path = Paths.get("animals.dat");
+
+        if (Files.exists(path)) {
+
+            FileInputStream fin = null;
+            try {
+                fin = new FileInputStream(path.toFile());
+                ObjectInputStream ois = new ObjectInputStream(fin);
+                animalList = (ArrayList<Animal>) ois.readObject();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    private void saveCatalog() {
+
+        FileOutputStream fout = null;
+        try {
+            fout = new FileOutputStream("animals.dat");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(animalList);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     /**
      * Add new animal action

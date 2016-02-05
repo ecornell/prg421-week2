@@ -6,10 +6,12 @@
  * Class:          PRG/421 - Roland Morales
  */
 
+import java.io.Serializable;
+
 /**
  * Base Characteristic Object
  */
-abstract public class Characteristic {
+abstract public class Characteristic implements Serializable {
 
     /**
      * Characteristic name
