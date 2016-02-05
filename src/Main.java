@@ -74,6 +74,8 @@ public class Main {
 
                 editAnimal();
 
+                saveCatalog();
+
             } else if (menuSelection.equalsIgnoreCase("D")) {
 
                 ui.displayTitle("Delete an Animal");
