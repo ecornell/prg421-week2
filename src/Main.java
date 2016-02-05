@@ -15,6 +15,8 @@ import java.util.List;
 
 public class Main {
 
+    public static final String ANIMALS_DAT_FILE = "animals.dat";
+
     private final UI ui = UI.getInstance();
 
     /**
@@ -93,42 +95,34 @@ public class Main {
     }
 
 
-
+    /**
+     * Load animal catalog from serialized data in animals.dat file
+     */
     private void loadCatalog() {
 
-        Path path = Paths.get("animals.dat");
+        Path path = Paths.get(ANIMALS_DAT_FILE);
 
         if (Files.exists(path)) {
 
-            FileInputStream fin = null;
-            try {
-                fin = new FileInputStream(path.toFile());
-                ObjectInputStream ois = new ObjectInputStream(fin);
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path.toFile()))) {
                 animalList = (ArrayList<Animal>) ois.readObject();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch (Exception e) {
+                ui.displayError("Could not load animal catalog - " + e.getMessage());
             }
 
         }
 
     }
 
+    /**
+     * Save animal catalog by serializing ArrayList<Animal> to animals.dat file
+     */
     private void saveCatalog() {
 
-        FileOutputStream fout = null;
-        try {
-            fout = new FileOutputStream("animals.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fout);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ANIMALS_DAT_FILE))) {
             oos.writeObject(animalList);
-            oos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            ui.displayError("Could not save animal catalog - " + e.getMessage());
         }
 
     }
