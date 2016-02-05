@@ -1,10 +1,10 @@
 /**
- * Title:          Week 2 - ArrayLists (Animal Catalog)
- * Author:         Elijah Cornell
- * Creation Date:  2016-01-25
+ * Title:          ArrayLists (Animal Catalog) - Week 3 Team Improvements
+ * Author:         Team B - ( Elijah Cornell / Eric Landeis / Gordon Doskas /
+ *                          James Rippon / Joseph Hart / Keith Green / Lance Branford )
+ * Creation Date:  2016-02-05
  * Class:          PRG/421 - Roland Morales
  */
-package ecornell.wk2.arraylist;
 
 /**
  * Characteristic object that has a Boolean value (Yes/No or True/False)
