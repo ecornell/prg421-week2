@@ -9,6 +9,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Comparator;
 
 /**
  * Animal object which contains a list of characteristic values
@@ -61,4 +62,33 @@ public class Animal implements Serializable {
     public List<Characteristic> getCharacteristicList() {
         return characteristicList;
     }
+
+    public static Comparator<Animal> nameComparator = new Comparator<Animal>() {
+      public int compare(Animal a1, Animal a2) {
+        return a1.getName().toUpperCase().compareTo(a2.getName().toUpperCase());
+      }
+    };
+
+    public static Comparator<Animal> colorComparator = new Comparator<Animal>() {
+      public int compare(Animal a1, Animal a2) {
+        String v1 = "";
+        String v2 = "";
+
+        for(Characteristic chr : a1.getCharacteristicList())
+        {
+          if (chr.getName().equals("Color"))
+          {
+            v1 = (String)chr.getValue();
+          }
+        }
+        for(Characteristic chr : a2.getCharacteristicList())
+        {
+          if (chr.getName().equals("Color"))
+          {
+            v2 = (String)chr.getValue();
+          }
+        }
+        return v1.toUpperCase().compareTo(v2.toUpperCase());
+      }
+    };
 }
