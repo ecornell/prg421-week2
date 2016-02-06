@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Main {
 
@@ -85,13 +86,36 @@ public class Main {
                 saveCatalog();
 
             } else if (menuSelection.equalsIgnoreCase("L")) {
+                do {
+                  ui.displayTitle("List catalog sorted by:");
+                  ui.display("U: Unsorted");
+                  ui.display("N: Name");
+                  ui.display("C: Color");
+                  ui.display("X: Cancel");
+                  ui.spacer();
+                  ui.displayPrompt("Menu selection (U/N/C/X) : ");
+                  menuSelection = ui.readInputString();
 
-                ui.displayTitle("List of Entire Animal Catalog");
+                  if (menuSelection.equalsIgnoreCase("U")) {
+                    ui.displayTitle("Unsorted List of Animal Catalog");
+                    listAnimals();
+                    break;
+                  }
 
-                listAnimals();
+                  else if (menuSelection.equalsIgnoreCase("N")) {
+                    ui.displayTitle("Name Sorted List of Animal Catalog");
+                    listAnimals("N");
+                    break;
+                  }
 
+                  else if (menuSelection.equalsIgnoreCase("C")) {
+                    ui.displayTitle("Color Sorted List of Animal Catalog");
+                    listAnimals("C");
+                    break;
+                  }
+              } while (!menuSelection.equalsIgnoreCase("X"));
+              menuSelection = "";
             }
-
         } while (!menuSelection.equalsIgnoreCase("X"));
 
     }
@@ -306,11 +330,23 @@ public class Main {
     /**
      * Display a full listing on all known Animals and their individual characteristics
      */
-    private void listAnimals() {
-
+      private void listAnimals() {
+        listAnimals("");
+      }
+      private void listAnimals(String sort) {
+        List <Animal>sortList = new ArrayList<Animal>(animalList);
         if (animalList.size() > 0) {
+            switch(sort)
+            {
+              case "N":
+                Collections.sort(sortList, Animal.nameComparator);
+                break;
+              case "C":
+                Collections.sort(sortList, Animal.colorComparator);
+                break;
+            }
 
-            for (Animal animal : animalList) {
+            for (Animal animal : sortList) {
 
                 ui.display(animal.getName());
 
