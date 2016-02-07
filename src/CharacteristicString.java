@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 public class CharacteristicString extends Characteristic implements Serializable {
 
+    static final long serialVersionUID = 1L;
+
     /**
      * @param name Characteristic name
      * @param verb  Verb to describe characteristic

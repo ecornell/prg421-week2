@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 public class CharacteristicBoolean extends Characteristic implements Serializable {
 
+    static final long serialVersionUID = 1L;
+
     /**
      * Negatived verb value used to describe characteristic (examples: Is not a, Cannot)
      */

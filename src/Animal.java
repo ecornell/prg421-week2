@@ -16,6 +16,8 @@ import java.util.Comparator;
  */
 public class Animal implements Serializable {
 
+    static final long serialVersionUID = 1L;
+
     /**
      * Animal name
      */

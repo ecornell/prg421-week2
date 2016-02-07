@@ -13,6 +13,8 @@ import java.io.Serializable;
  */
 abstract public class Characteristic implements Serializable {
 
+    static final long serialVersionUID = 1L;
+
     /**
      * Characteristic name
      */
